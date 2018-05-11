@@ -31,7 +31,7 @@ public class ReverseString {
 	        string2.append(string);
 	 
 	        
-	        string2 =  string2.reverse();
+	        string2 = string2.reverse();
 	 
 	        
 	        System.out.println(string2);
