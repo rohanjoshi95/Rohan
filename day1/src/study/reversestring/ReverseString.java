@@ -1,43 +1,31 @@
 package study.reversestring;
 
+import java.util.Scanner;
+
 public class ReverseString {
-	
-	private String string;
-
-	public ReverseString(String string) {
-		super();
-		this.string = string;
-	}
-	
-	public ReverseString()
-	{
+	public static void main(String[] args) {
 		
-	}
-
-	public String getString() {
-		return string;
-	}
-
-	public void setString(String string) {
-		this.string = string;
-	}
-	
-	public void revstring(String string)
-	{
-		
-	        StringBuilder string2 = new StringBuilder();
-	 
-	        
-	        string2.append(string);
-	 
-	        
-	        string2 = string2.reverse();
-	 
-	        
-	        System.out.println(string2);
-		
-		
-		
-	}
-
+		  String str = null;
+	      System.out.println("Enter string to be reversed");
+		  Scanner sc=new Scanner(System.in);
+		 
+		  str=sc.nextLine();
+	      String[] split = str.split(" ");
+		  String result = " ";
+		  
+		  for (int i = 0; i < split.length; i++) 
+		  {
+		   
+			  String temp="";
+			  for (int j = split[i].length()-1; j >=0; j--) 
+			  {
+				
+				  temp = temp + split[i].charAt(j);
+		    	
+			  }
+			  result = result + temp +" ";
+		  }
+		  System.out.println(result);     
+	       
+	    }
 }
