@@ -1,42 +1,56 @@
 package study.palindromesortchars;
 
-import java.util.Scanner;
 
-public class PalSortChars {
+public class PalSortChars 
+{
 
-public static void main(String[] args) {
-	
-
-	int  rem, reverse_num, temp;
-		Scanner sc=new Scanner(System.in);
-		System.out.println("Enter 10 numbers");
-		int arr[]=new int[10];
-		for (int i = 0; i < arr.length; i++) {
-			
-			arr[i]=sc.nextInt();
-		}
+public static void main(String[] args) 
+	{
+		int arr1[] =new int[15];
+		int arr[]= {121,232,565,54,22,233,353,494,6556};
+		System.out.println("Palindrome Numbers :");	
 		
 		for (int i = 0; i < arr.length; i++) 
 		{
 			
-			 temp=arr[i];
-		      
-			 reverse_num=0;
-		     
-			 while(temp>0)
-			 {
-		         rem=temp%10;
-		         temp=temp/10;
-		         reverse_num=reverse_num*10+rem;
-		     
-			 }
-		      if(arr[i]==reverse_num)
-		         System.out.println(arr[i]+" ");
-		   }
+			int num,x,rev=0;
+			num=arr[i];
+		
+			while(num!=0)
+			{
+				 x=num%10;
+				 rev=rev*10+x;
+				 num=num/10;
+				 
+			}
 			
+			if(rev==arr[i])
+			{
+				
+				System.out.print(arr[i]+" ");
+		
+			}
 		}
-
+		
+		for (int i = 0; i < arr.length; i++) {
+			
+			for (int j = 0; j < arr.length-1; j++) {
+				
+				if(arr[j]<arr[j+1])
+				{
+					int temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+		System.out.println("\nAfter Sorting :");
+		
+		for (int i = 0; i < arr.length; i++) {
+			
+			System.out.print(arr[i]+" ");
+		}
 	}
 	
-	
+}
 

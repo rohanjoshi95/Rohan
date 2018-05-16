@@ -1,21 +1,20 @@
 package study.duplicates;
 
 public class Duplicate {
-	public static void main(String[] args) {
-		
-		{
-	        int[] array = {1, 2,2, 5, 5, 6, 6};
-	 
-	        for (int i = 0; i < array.length-1; i++)
+	        
+		//Passing the array and number to be checked as duplicate
+	       public void checkDuplicate(int arr[],int number)
 	        {
-	            for (int j = i+1; j < array.length; j++)
-	            {
-	                if ((array[i] == array[j]) && (i != j))
-	                {
-	                    System.out.println("Duplicate Elements : "+array[j]);
-	                }
-	            }
+	    	   int cnt=0;
+	        	for (int i = 0; i < arr.length; i++) 
+	        	{
+	        			if(arr[i]==number)
+	        			{
+	        				cnt++;
+	        			}
+				}
+			    if(cnt>1)
+			    	System.out.println(cnt+" ");
 	        }
-		}
-	}
+
 }
