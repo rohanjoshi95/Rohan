@@ -6,12 +6,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class fileManipulate {
+public class FileManipulate {
 
 	public static void main(String[] args) throws IOException {
 
 	      @SuppressWarnings("resource")
-		FileReader fr=new FileReader("C:\\Users\\trainee\\Rohan\\day1\\src\\study\\reversestring\\rohan.txt");
+	      FileReader fr=new FileReader("C:\\Users\\trainee\\Rohan\\day1\\src\\study\\reversestring\\rohan.txt");
 		  int a;
 		  while((a=fr.read())!=-1)
 		  {
@@ -27,9 +27,6 @@ public class fileManipulate {
 		        //Specify the file name and path here
 		    	File file =new File("C:\\Users\\trainee\\Rohan\\day1\\src\\study\\reversestring\\rohan.txt");
 
-		    	/* This logic is to create the file if the
-		    	 * file is not already present
-		    	 */
 		    	if(!file.exists()){
 		    	   file.createNewFile();
 		    	}

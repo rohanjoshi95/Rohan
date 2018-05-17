@@ -2,8 +2,12 @@ package study.generics;
 
 public class Generic {
 
-	//Generic method to print any type of elements
-	public <T> void printarray(T arr[])
+	public Generic()
+	{
+		
+	}
+	
+	public <T> void printarray(T arr[])//Generic method to print any type of elements
 	{
 		for (int i = 0; i < arr.length; i++) {
 			

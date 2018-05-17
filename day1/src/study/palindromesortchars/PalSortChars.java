@@ -20,8 +20,7 @@ public static void main(String[] args)
 			{
 				 x=num%10;
 				 rev=rev*10+x;
-				 num=num/10;
-				 
+				 num=num/10; 
 			}
 			
 			if(rev==arr[i])

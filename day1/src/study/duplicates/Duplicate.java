@@ -14,7 +14,9 @@ public class Duplicate {
 	        			}
 				}
 			    if(cnt>1)
+			    {
 			    	System.out.println(cnt+" ");
+			    }
 	        }
 
 }

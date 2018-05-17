@@ -1,7 +1,7 @@
 package study.generics;
 
 import java.util.Scanner;
-
+//class Generic
 public class UserGeneric {
 
 	public static void main(String[] args) {
