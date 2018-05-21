@@ -17,8 +17,6 @@ public class CalculatorException {
     for (int i = 0; i < p; i++) {
       result*=n;
     }
-    
-    
     return result;
     
   }

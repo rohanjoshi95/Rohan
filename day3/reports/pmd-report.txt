@@ -1,0 +1,21 @@
+src/study/generics/Generic.java:3:	Each class should declare at least one constructor
+src/study/generics/Generic.java:3:	Header comments are required
+src/study/generics/Generic.java:5:	Classes should not have non-constructor methods with the same name as the class
+src/study/generics/Generic.java:5:	Method names should not start with capital letters
+src/study/generics/Generic.java:5:	Public method and constructor comments are required
+src/study/generics/Generic.java:6:	Document empty method body
+src/study/generics/Generic.java:10:	Consider using varargs for methods or constructors which take an array the last parameter.
+src/study/generics/Generic.java:10:	Parameter 'arr' is not assigned and could be declared final
+src/study/generics/Generic.java:10:	Public method and constructor comments are required
+src/study/generics/Generic.java:12:	This for loop can be replaced by a foreach loop
+src/study/generics/Generic.java:14:	Potential violation of Law of Demeter (method chain calls)
+src/study/generics/UserGeneric.java:5:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/study/generics/UserGeneric.java:5:	Header comments are required
+src/study/generics/UserGeneric.java:7:	Parameter 'args' is not assigned and could be declared final
+src/study/generics/UserGeneric.java:7:	Public method and constructor comments are required
+src/study/generics/UserGeneric.java:7:	The method 'main(String)' has a NCSS line count of 14.
+src/study/generics/UserGeneric.java:9:	Local variable 'sc' could be declared final
+src/study/generics/UserGeneric.java:10:	Avoid variables with short names like sc
+src/study/generics/UserGeneric.java:10:	Found 'DU'-anomaly for variable 'sc' (lines '10'-'35').
+src/study/generics/UserGeneric.java:13:	Avoid variables with short names like gn
+src/study/generics/UserGeneric.java:13:	Local variable 'gn' could be declared final

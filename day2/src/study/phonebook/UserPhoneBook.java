@@ -1,6 +1,7 @@
 package study.phonebook;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -10,94 +11,111 @@ public class UserPhoneBook {
 
 	public static void main(String[] args) {
 		
-		Scanner sc =new Scanner(System.in);
-		
+		@SuppressWarnings("resource")
+		Scanner scanner =new Scanner(System.in);
 		Logger logger =Logger.getLogger("UserPhoneBook");
-		PhoneBook phonebook=new PhoneBook(1,"Rohan","Joshi","9096770545");
+		PhoneBook phonebook=new PhoneBook(5,"Rohan","Joshi","9096770545");
 		PhoneBook phonebook1=new PhoneBook(2,"Indrajeet","Nikam","9096770546");
-		PhoneBook phonebook2=new PhoneBook(3,"Swapnil","Kumbhar","9096770547");
-		ArrayList<PhoneBook> arrayphonebook=new ArrayList<>();
-		
+		PhoneBook phonebook2=new PhoneBook(7,"Swapnil","Kumbhar","9096770547");
+		ArrayList<PhoneBook> arrayphonebook=new ArrayList<>();	
 		arrayphonebook.add(phonebook);
 		arrayphonebook.add(phonebook1);
 		arrayphonebook.add(phonebook2);
 		int choice;
+		
+		
 		do {
 			System.out.println("......MENU......");
-			System.out.println("1.Add into Phone Book");
-			System.out.println("2.Remove from Phone Book");
-			System.out.println("3.Search by name");
-			System.out.println("4.Search by serial number");
-			System.out.println("5.Search by phone number");
-			System.out.println("6.Display records");
-			System.out.println("7.Quit");
+			System.out.println("1.Add data into Phone Book");
+			System.out.println("2.Sorting data by name ");
+			System.out.println("3.Sorting data by Serial Number ");
+			System.out.println("4.Remove from Phone Book");
+			System.out.println("5.Search by name");
+			System.out.println("6.Search by serial number");
+			System.out.println("7.Search by phone number");
+			System.out.println("8.Display records");
+			System.out.println("9.Quit");
 			System.out.println("Enter Choice");
-			choice=sc.nextInt();
+			choice=scanner.nextInt();
 			
 			switch (choice) {
 			case 1:
-				{
-					System.out.println("Enter data into Phone Book");
-					int serialnumber;
-					String firstname;
-					String lastname;
-					String mobilenumber;
+			{
+				System.out.println("Enter data into Phone Book");
+				int serialnumber;
+				String firstname;
+				String lastname;
+				String mobilenumber;
 					
-					System.out.println("Enter serial number");
-					serialnumber=sc.nextInt();
+				System.out.println("Enter serial number");
+				serialnumber=scanner.nextInt();
 				
-					System.out.println("Enter first name");
-					firstname=sc.next();
+				System.out.println("Enter first name");
+				firstname=scanner.next();
 					
-					System.out.println("Enter last Name");
-					lastname=sc.next();
+				System.out.println("Enter last Name");
+				lastname=scanner.next();
 					
-					System.out.println("Enter mobile number");
-					mobilenumber=sc.next();
+				System.out.println("Enter mobile number");
+				mobilenumber=scanner.next();
 					
-						PhoneBook p=new PhoneBook(serialnumber,firstname,lastname,mobilenumber);
-						arrayphonebook.add(p);
-						System.out.println("Record added succesfully");
+				PhoneBook p=new PhoneBook(serialnumber,firstname,lastname,mobilenumber);
+				arrayphonebook.add(p);
+				System.out.println("Record added succesfully");
 						
-						break;	
-					}
-					
-				
+				break;	
+			}
+	
 			case 2:
-				{
-					
-					int serialnumber;
-					logger.log(Level.INFO,"Enter id of person you want to delete");
-					serialnumber=sc.nextInt();
-					try
-					{
-						
-						if(arrayphonebook.contains(serialnumber))
-						{
-							throw new IndexOutOfBoundsException("This serial number does not exists");
-						}
-						else
-						{
-							arrayphonebook.remove(serialnumber);
-							System.out.println("Record deleted succesfully");
-						}
-					
-					}catch(Exception e)
-					{
-						System.out.println("This serial number "+serialnumber+" does not exists");
-					}
-					break;
-				}
+			{
+				System.out.println("Sorted Data");
+				Collections.sort(arrayphonebook, new NameComparator());
+				arrayphonebook.stream().forEach((i->{System.out.println(i);}));
+				break;
+			}
 			case 3:
+			{
+				System.out.println("Sorted Data");
+				Collections.sort(arrayphonebook, new SerialNumberComparator() );
+				arrayphonebook.stream().forEach((a->{System.out.println(a);}));
+				break;
+			}
+
+			case 4:
+			{
+					
+				int serialnumber;
+				logger.log(Level.INFO,"Enter id of person you want to delete");
+				serialnumber=scanner.nextInt();
+				try
+				{
+						
+				if(arrayphonebook.contains(serialnumber))
+				{
+					throw new IndexOutOfBoundsException("This serial number does not exists");
+				}
+				else
+				{
+					arrayphonebook.remove(serialnumber);
+					System.out.println("Record deleted succesfully");
+				}
+					
+				}catch(Exception e)
+				{
+					System.out.println("This serial number "+serialnumber+" does not exists");
+				}
+				break;
+			}
+			case 5:
 			{
 				String firstname;
 				System.out.println("Enter first name of person you want to search");
-				firstname=sc.next();
+				firstname=scanner.next();
 				try
 				{
-				if(arrayphonebook.contains(firstname))
+				if(!arrayphonebook.contains(firstname))
 				{
-					System.out.println("record with name"+firstname+"does not exists");
+					System.out.println("record with name "+firstname+" does not exists");
 				}
 				else
 				{
@@ -111,21 +129,18 @@ public class UserPhoneBook {
 						{
 							System.out.println(p1.getSerialnumber()+" "+p1.getFirstname()+" "+p1.getLastname()+" "+p1.getPhonenumber());
 						} 
-					
 					}
-				
 				}
 				}catch(Exception e)
 				{
-					System.out.println("Record with name" +firstname+" does not exists");
+					System.out.println("Record with name "+firstname+" does not exists");
 				}
 				break;
-			}
-			
-			case 4:
+			}	
+			case 6:
 			{
 				System.out.print("\nEnter serial number: ");
-	  			int serialnumber=sc.nextInt();
+	  			int serialnumber=scanner.nextInt();
 	  			Iterator<PhoneBook> itr2 = arrayphonebook.iterator();
 	  			int isFound2 ;
 	  			
@@ -150,11 +165,11 @@ public class UserPhoneBook {
 	  			break;
 			}
 			
-			case 5:
+			case 7:
 			{
 				String phonenumber;
 				System.out.println("Enter phone number of person you want to search");
-				phonenumber=sc.next();
+				phonenumber=scanner.next();
 				try
 				{
 				if(arrayphonebook.contains(phonenumber))
@@ -183,16 +198,12 @@ public class UserPhoneBook {
 				}
 				break;
 			}
-			case 6:
+			case 8:
 			{
-				Iterator<PhoneBook> iterator=arrayphonebook.iterator();
-				for (Iterator iterator2 = arrayphonebook.iterator(); iterator2.hasNext();) 
-				{	
-					System.out.println(iterator2.next());	
-				} 
+				arrayphonebook.stream().forEach((i->{System.out.println(i);}));
 				break;
 			}
-			case 7:
+			case 9:
 			{
 				System.out.println("Quit");
 				break;
@@ -201,8 +212,6 @@ public class UserPhoneBook {
 				System.out.println("Invalid input");
 				break;
 		}
-		} while (choice!=7);
-
+		} while (choice!=9);
 	}
-
 }
