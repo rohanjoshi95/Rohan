@@ -1,9 +1,7 @@
 package study.bankapplication;
 
-import java.awt.List;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CheckingAccount implements Account{

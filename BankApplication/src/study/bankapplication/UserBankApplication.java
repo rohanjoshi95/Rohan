@@ -192,7 +192,7 @@ public class UserBankApplication {
 								else
 								{
 									list=account.deposit(depositamount);
-									ArrayList list1=account.getStatement(list);
+									ArrayList<Account> list1=account.getStatement(list);
 									FlexibleSavingAccount.getBalance();
 									System.out.println(list1);;
 									
@@ -213,5 +213,7 @@ public class UserBankApplication {
 				}
 	
 		}while(choice!=4);	
+		scanner.close();
 	}
+	
 }

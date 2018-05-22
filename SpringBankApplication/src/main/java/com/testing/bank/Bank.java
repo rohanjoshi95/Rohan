@@ -1,12 +1,9 @@
-package study.bankapplication;
+package com.testing.bank;
 
+import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Rohan Joshi
- *
- */
-public class Bank extends Address{
+public class Bank {
 
 	private String bankname;
 	private List<Customer> customer;
@@ -14,7 +11,7 @@ public class Bank extends Address{
 
 
 	public Bank(String bankname, List<Customer> customer, Address address) {
-		super();
+		
 		this.bankname = bankname;
 		this.customer = customer;
 		this.address = address;
@@ -71,7 +68,15 @@ public class Bank extends Address{
 	public String toString() {
 		return "Bank [name=" + bankname + ", customer=" + customer + ", address=" + address + "]";
 	}
-
+	
+	public void display()
+	{
+		System.out.println(bankname);
+		System.out.println("\nCustomers are :");
+		customer.stream().forEach((i->{System.out.println(i);}));
+	}
+	
+	
 	
 	
 }

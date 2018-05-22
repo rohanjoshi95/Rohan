@@ -1,12 +1,12 @@
-package study.bankapplication;
+package com.testing.bank;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Logger;
 
-public class FlexibleSavingAccount implements Account{
+public class SavingAccount implements Account{
 
-Logger logger=Logger.getLogger("FlexibleSavingAccount");
+Logger logger=Logger.getLogger("SavingAccount");
 	
 	private static double balance;
 	private double interestrate;
@@ -17,19 +17,19 @@ Logger logger=Logger.getLogger("FlexibleSavingAccount");
 	 * @param interestrate
 	 * @param period
 	 */
-	public FlexibleSavingAccount(double balance, double interestrate, double period) {
+	public SavingAccount(double balance, double interestrate, double period) {
 		this.balance = balance;
 		this.interestrate = interestrate;
 		this.period = period;
 	}
-	
-	public FlexibleSavingAccount()
+
+	public SavingAccount()
 	{
-		interestrate=12;
+		interestrate=10;
 		balance=1000;
 	}
 	
-
+	
 	/**
 	 * @return the balance
 	 */
@@ -75,32 +75,32 @@ Logger logger=Logger.getLogger("FlexibleSavingAccount");
 
 
 	@Override
-	public ArrayList withdraw(double amount) {
+	public ArrayList<Date> withdraw(double amount) {
 		
 		
 		if((balance > 0) && (balance > amount))
 		{
 			balance=balance-amount;
+			System.out.println("Cash credited successfuly");
 		}
 		else
 		{
 			System.out.println("Insufficient balance");
-			balance = balance;
+			balance=balance;
 		}
 		Date date=new Date();
-		ArrayList list=new ArrayList();
+		ArrayList<Date> list=new ArrayList<Date>();
 		list.add(date);
 		System.out.println("Available balance :" +balance);
 		return list;
 	}
 
 	@Override
-	public ArrayList deposit(double amount) {
+	public ArrayList<Object> deposit(double amount) {
 		
 		if(amount > 0)
 		{
 			balance=balance+amount;
-			System.out.println("Cash credited successfuly");
 		}
 		else
 		{
@@ -108,7 +108,7 @@ Logger logger=Logger.getLogger("FlexibleSavingAccount");
 			balance = balance;
 		}
 		Date date =new Date();
-		ArrayList list=new ArrayList<>();
+		ArrayList<Object> list=new ArrayList<>();
 		list.add(date);
 		System.out.println("Available balance :" +balance);
 		return list;
@@ -116,18 +116,16 @@ Logger logger=Logger.getLogger("FlexibleSavingAccount");
 
 	@Override
 	public String toString() {
-		return "FlexibleSavingAccount [balance=" + balance + ", interestrate=" + interestrate + ", period=" + period + "]";
+		return "SavingAccount [balance=" + balance + ", interestrate=" + interestrate + ", period=" + period + "]";
 	}
 
 	@Override
 	public ArrayList<Account> getStatement(ArrayList list) {
 		
-		ArrayList arraylist=new ArrayList();	
+		ArrayList arraylist=new ArrayList();
 		arraylist.add(list);
 		return arraylist;
 	}
 
 
-	
-	
 }

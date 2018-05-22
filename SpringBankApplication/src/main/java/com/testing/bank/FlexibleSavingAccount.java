@@ -1,4 +1,4 @@
-package study.bankapplication;
+package com.testing.bank;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -131,3 +131,4 @@ Logger logger=Logger.getLogger("FlexibleSavingAccount");
 	
 	
 }
+
