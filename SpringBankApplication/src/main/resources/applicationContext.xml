@@ -7,46 +7,45 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans  
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">  
   
-  <bean id="beanaddress" class="com.testing.bank.Address">
-	 	<constructor-arg value="wakan road"></constructor-arg>
+  <bean id="beanaddress" class="com.testing.bank.Address" scope="singleton">
+	 	<!-- <constructor-arg value="wakan road"></constructor-arg>
 	  	<constructor-arg value="24/1/2B"></constructor-arg>
 	  	<constructor-arg value="415110"></constructor-arg>
 	  	<constructor-arg value="Karad"></constructor-arg>
 	  	<constructor-arg value="9096770545"></constructor-arg>
-	  	<constructor-arg value="rmj.rohan95@gmail.com"></constructor-arg> 
+	  	<constructor-arg value="rmj.rohan95@gmail.com"></constructor-arg>  -->
   </bean>
    <bean id="beanrashmiaddress" class="com.testing.bank.Address">
-	 	<constructor-arg value="wakan road"></constructor-arg>
+	 	<!-- <constructor-arg value="wakan road"></constructor-arg>
 	  	<constructor-arg value="24/1/2B"></constructor-arg>
 	  	<constructor-arg value="415110"></constructor-arg>
 	  	<constructor-arg value="Indore"></constructor-arg>
 	  	<constructor-arg value="9096770546"></constructor-arg>
-	  	<constructor-arg value="rashmi,jaiswal@gmail.com"></constructor-arg> 
+	  	<constructor-arg value="rashmi,jaiswal@gmail.com"></constructor-arg> --> 
   </bean>
   
   
   <bean id="beanbankaddress" class="com.testing.bank.Address">
-	 	<constructor-arg value="Savarkar road"></constructor-arg>
+	 	<!-- <constructor-arg value="Savarkar road"></constructor-arg>
 	  	<constructor-arg value="24/2/2C"></constructor-arg>
 	  	<constructor-arg value="415110"></constructor-arg>
 	  	<constructor-arg value="Karad"></constructor-arg>
 	  	<constructor-arg value="0216458971"></constructor-arg>
-	  	<constructor-arg value="hdfc.bank@gmail.com"></constructor-arg> 
+	  	<constructor-arg value="hdfc.bank@gmail.com"></constructor-arg>  -->
   </bean>
 
   <bean id="beancustomer" class="com.testing.bank.Customer">
-		<constructor-arg value="Rohan"></constructor-arg>
+		<!-- <constructor-arg value="Rohan"></constructor-arg>
 		<constructor-arg value="Joshi"></constructor-arg>
-		<constructor-arg ref="beanaddress"></constructor-arg>
+		<constructor-arg ref="beanaddress"></constructor-arg> -->
   </bean>
   
-    <bean id="beancustomer1" class="com.testing.bank.Customer">
-		<constructor-arg value="Rashmi"></constructor-arg>
+   <bean id="beancustomer1" class="com.testing.bank.Customer">
+		<!-- <constructor-arg value="Rashmi"></constructor-arg>
 		<constructor-arg value="Jaiswal"></constructor-arg>
-		<constructor-arg ref="beanrashmiaddress"></constructor-arg>
+		<constructor-arg ref="beanrashmiaddress"></constructor-arg> -->
   </bean>
-	
-	
+
 	<bean id="beanbank" class="com.testing.bank.Bank">
 		<constructor-arg value="HDFC Bank"></constructor-arg>
 		<constructor-arg ref="beanbankaddress"></constructor-arg>
@@ -57,7 +56,5 @@
 		</list>
 		</constructor-arg>
 	</bean>
-
-
 
 </beans>  

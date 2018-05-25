@@ -18,7 +18,10 @@ public class Address {
 		this.contactnumber = contactnumber;
 		this.email = email;
 	}
-
+	public Address()
+	{
+		
+	}
 	
 	/**
 	 * @return the street

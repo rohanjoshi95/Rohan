@@ -11,15 +11,40 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class UserSpringBankApplication {
 	public static void main(String[] args) {
 		
-	
 	Logger logger=Logger.getLogger("UserSpringBankApplication");
 	Scanner scanner = new Scanner(System.in);
+	@SuppressWarnings("resource")
+	
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	Customer customer = (Customer) context.getBean("beancustomer");
-	customer.show();
+	Customer customer1 = (Customer) context.getBean("beancustomer1");
 	
-	Bank bank = (Bank) context.getBean("beanbank");
-	bank.display();
+	Address add = (Address) context.getBean("beanaddress");
+	Address add1 = (Address) context.getBean("beanrashmiaddress");
+	
+	customer.setFirstname("Rohan");
+	customer.setLastname("Joshi");
+	add.setStreet("Wakan Road");
+	add.setHousenumber("24/1/2B");
+	add.setZipnumber("415110");
+	add.setCity("Karad");
+	add.setContactnumber("9096770545");
+	add.setEmail("rmj.rohan95@gmail.com");
+	customer.setAddress(add);
+	
+	
+	customer1.setFirstname("Ruchita");
+	customer1.setLastname("Kamble");
+	add1.setStreet("MG Road");
+	add1.setHousenumber("24/1/2C");
+	add1.setZipnumber("429110");
+	add1.setCity("Nagpur");
+	add1.setContactnumber("9096770546");
+	add1.setEmail("ruchita.kamble@gmail.com");
+	customer1.setAddress(add1);
+	
+	customer.show();
+	customer1.show();
 	
 	Account account;
 	int choice;
@@ -29,7 +54,8 @@ public class UserSpringBankApplication {
 		System.out.println("1.Saving Account ");
 		System.out.println("2.Checking Account ");
 		System.out.println("3.Flexible Account ");
-		System.out.println("4.Quit ");
+		System.out.println("4.Show all customers");
+		System.out.println("5.Quit ");
 		System.out.println("Enter Choice");
 		choice=scanner.nextInt();
 		
@@ -63,7 +89,7 @@ public class UserSpringBankApplication {
 								ArrayList list1=account.getStatement(list);
 								SavingAccount.getBalance();
 								System.out.println(list1);
-								System.out.println("Cash debited successfuly");
+								
 							}
 						}
 						else if((ch=='d') || (ch=='D'))
@@ -99,7 +125,7 @@ public class UserSpringBankApplication {
 				char ch = 'a';
 				if(account instanceof CheckingAccount)
 					{
-					ArrayList list = null;
+					ArrayList<?> list = null;
 					ch=scanner.next().charAt(0);
 						if((ch=='w') || (ch=='W'))
 						{
@@ -114,10 +140,10 @@ public class UserSpringBankApplication {
 							else
 							{
 								list=account.withdraw(withdrawamount);
-								ArrayList list1=account.getStatement(list);
+								ArrayList<?> list1=account.getStatement(list);
 								CheckingAccount.getBalance();
 								System.out.println(list1);
-								System.out.println("Cash debited successfuly");
+								
 							}
 						}
 						else if((ch=='d') || (ch=='D'))
@@ -133,7 +159,7 @@ public class UserSpringBankApplication {
 							else
 							{
 								list=account.deposit(depositamount);
-								ArrayList list1=account.getStatement(list);
+								ArrayList<?> list1=account.getStatement(list);
 								CheckingAccount.getBalance();
 								System.out.println(list1);
 								
@@ -156,25 +182,30 @@ public class UserSpringBankApplication {
 				char ch = 'a';
 				if(account instanceof FlexibleSavingAccount)
 					{
-					ArrayList list = null;
+					ArrayList<?> list = null;
 					ch=scanner.next().charAt(0);
 						if((ch=='w') || (ch=='W'))
 						{
 							double withdrawamount;
 							logger.log(Level.INFO, "Enter amount for withdrawal");
 							withdrawamount=scanner.nextDouble();
+							try {
 							if(withdrawamount < 0)
 							{
-								logger.log(Level.INFO, "Enter valid amount");
-								break;
+								//logger.log(Level.INFO, "Enter valid amount");
+								throw new InvalidAmountException("Enter valid amount");
 							}
 							else
 							{
 								list=account.withdraw(withdrawamount);
-								ArrayList list1=account.getStatement(list);
+								ArrayList<?> list1=account.getStatement(list);
 								FlexibleSavingAccount.getBalance();
 								System.out.println(list1);;
-								System.out.println("Cash debited successfuly");
+								
+							}
+							}catch (Exception e) {
+								System.out.println("");
+								System.out.println(e.getMessage());
 							}
 						}
 						else if((ch=='d') || (ch=='D'))
@@ -202,6 +233,10 @@ public class UserSpringBankApplication {
 			}
 				
 			case 4:
+				Bank bank = (Bank) context.getBean("beanbank");
+				bank.display();
+				break;
+			case 5:
 				System.out.println("Quit");
 				System.exit(0);
 				break;
@@ -213,5 +248,5 @@ public class UserSpringBankApplication {
 
 	}while(choice!=4);	
 	scanner.close();
-}
+	}
 }
