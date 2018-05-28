@@ -1,17 +1,18 @@
 package com.testing.service;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.testing.dao.CustomerDao;
 import com.testing.dao.CustomerDaoImpl;
 import com.testing.model.Customer;
 
 public class CustomerServiceImpl implements CustomerService{
-
-	ApplicationContext con = new ClassPathXmlApplicationContext("applicationContext.xml");
-	CustomerDaoImpl custdao=(CustomerDaoImpl) con.getBean("custdao");
+	static Logger logger = Logger.getLogger("CustomerServiceImpl");
+	static ApplicationContext con = new ClassPathXmlApplicationContext("applicationContext.xml");
+	static CustomerDaoImpl custdao=(CustomerDaoImpl) con.getBean("custdao");
 	
 	@Override	
 	public int addCustomer(Customer cust) {
@@ -56,11 +57,27 @@ public class CustomerServiceImpl implements CustomerService{
 		return removeData;
 	}
 
-	@Override
 	public List<Customer> viewAllCustomer() {
 		List<Customer> list =  custdao.viewAllCustomer();
+		if(!list.isEmpty())
+		{
 		list.stream().forEach((i->{System.out.println(i);}));
+		}
 		return list;
+	}
+	
+	public boolean validateCustomer(int id)
+	{
+		CustomerServiceImpl asimpl = (CustomerServiceImpl) con.getBean("custser");
+		List<Customer> list = asimpl.viewAllCustomer();
+		logger.log(Level.INFO, "Enter Id number");
+		for (Customer customer : list) {
+			if (id == customer.getCustomerId()) {
+				return true;
+			}
+			return false;
+		}
+		return false; 
 	}
 
 }

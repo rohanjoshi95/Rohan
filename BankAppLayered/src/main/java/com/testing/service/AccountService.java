@@ -19,10 +19,14 @@ public interface AccountService {
 	/**
 	 * removeAccount method for calling removeAccount method of CustomerDaoImpl class 
 	 * */
-	int removeAccount(int custId);
+	int removeAccount(int acntId);
 	/**
 	 * viewAllAccount method for calling viewAllAccount method of CustomerDaoImpl 
 	 * class 
 	 * */
 	List<Account> viewAllAccount();
+	 /**
+	 * To validate account
+	 * */
+	 boolean validateAccount(int id);
 }

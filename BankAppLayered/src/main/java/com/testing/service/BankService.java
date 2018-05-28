@@ -24,4 +24,9 @@ public interface BankService {
 	 * viewAllBank method for viewing all banks from database
 	 * */
 	List<Bank> viewAllBank();
+	/**
+	 * To validate bank
+	 * */
+	public boolean validateBank(int id);
+	
 }

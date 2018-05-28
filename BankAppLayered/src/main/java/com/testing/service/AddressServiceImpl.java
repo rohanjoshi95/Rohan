@@ -1,6 +1,9 @@
 package com.testing.service;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.testing.dao.AddressDaoImpl;
@@ -8,7 +11,7 @@ import com.testing.model.Address;
 
 public class AddressServiceImpl implements AddressService{
 
-	
+	static Logger logger = Logger.getLogger("AddressServiceImpl");
 	ApplicationContext con = new ClassPathXmlApplicationContext("applicationContext.xml");
 	AddressDaoImpl addrdao = (AddressDaoImpl) con.getBean("adddao");
 	@Override
@@ -57,10 +60,26 @@ public class AddressServiceImpl implements AddressService{
 
 	@Override
 	public List<Address> viewAllAddress() {
-		final List<Address> list = addrdao.viewAllAddress();
+		final List<Address> list = addrdao.viewAllAddresses();
+		if(!list.isEmpty())
+		{
+			System.out.println(list);
+		}
 		return list;
 	}
-
+	
+	public boolean validateAddress(int id)
+	{
+		AddressServiceImpl adimpl = (AddressServiceImpl) con.getBean("addser");
+		List<Address> list = adimpl.viewAllAddress();
+		for (Address address : list) {
+			if (id == address.getAddressId()) 
+				return true;
+			else
+				return false;
+		}
+		return false; 
+	}
 
 
 

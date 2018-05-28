@@ -1,6 +1,8 @@
 package com.testing.service;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -11,6 +13,7 @@ import com.testing.model.Customer;
 
 public class AccountServiceImpl implements AccountService{
 
+	Logger logger = Logger.getLogger("AccountServiceImpl");
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	AccountDaoImpl accdao = (AccountDaoImpl) context.getBean("acntdao");
 	@Override
@@ -44,8 +47,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public int removeAccount(int custId) {
-		int removeData = accdao.removeAccount(custId);
+	public int removeAccount(int acntId) {
+		int removeData = accdao.removeAccount(acntId);
 		if(removeData > 0)
 		{
 			System.out.println("Data removed successfuly");
@@ -61,10 +64,25 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public List<Account> viewAllAccount() {
 		List<Account> list = accdao.viewAllAccount();
+		if(!list.isEmpty())
+		{
 		list.stream().forEach((i->{System.out.println(i);}));
+		}
 		return list;
 	}
-
+	public boolean validateAccount(int id)
+	{
+		AccountServiceImpl acimpl = (AccountServiceImpl) context.getBean("acntser");
+		List<Account> list = acimpl.viewAllAccount();
+		logger.log(Level.INFO, "Enter Id number");
+		for (Account account : list) {
+			if (id == account.getAccountId()) {
+				return true;
+			}
+			return false;
+		}
+		return false; 
+	}
 
 
 }

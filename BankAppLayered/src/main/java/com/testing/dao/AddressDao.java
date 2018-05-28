@@ -9,6 +9,6 @@ public interface AddressDao {
 	public int addAddress(Address add);
 	public int updateAddress(int addId,String contno);
 	public int removeAddress(int id);
-	public List<Address> viewAllAddress();
+	public List<Address> viewAllAddresses();
 	
 }

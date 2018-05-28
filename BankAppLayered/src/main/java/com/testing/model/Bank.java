@@ -18,6 +18,12 @@ public class Bank {
 		this.bkaddressId = bkaddressId;
 	}
 	
+	public Bank( String bankname, int bkaddressId) {
+		
+		this.bankname = bankname;
+		this.bkaddressId = bkaddressId;
+	}
+	
 	public Bank() {
 		// TODO Auto-generated constructor stub
 	}

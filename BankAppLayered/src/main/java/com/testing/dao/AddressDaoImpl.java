@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.testing.model.Address;
+import com.testing.model.Bank;
 
 public class AddressDaoImpl implements AddressDao{
 
@@ -27,7 +28,7 @@ public class AddressDaoImpl implements AddressDao{
 	@Override
 	public int addAddress(Address add) {
 		
-		String addquery="insert into address values('"+add.getAddressId()+"','"+add.getZipnumber()+"','"+add.getCity()+"','"+add.getContactnumber()+"')";
+		final String addquery="insert into address(zipnumber , city , contactnumber) values('"+add.getZipnumber()+"','"+add.getCity()+"','"+add.getContactnumber()+"')";
 		System.out.println(addquery);
 		return jdbcTemplate.update(addquery);
 		
@@ -50,9 +51,9 @@ public class AddressDaoImpl implements AddressDao{
 	}
 
 	@Override
-	public List<Address> viewAllAddress() {
-		
-		return null;
+	public List<Address> viewAllAddresses() {
+		List<Address> bank = jdbcTemplate.query("select * from address", new AddressMapper());
+		return bank;
 	}
 
 }

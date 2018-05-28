@@ -24,6 +24,12 @@ public class Address {
 		this.contactnumber = contactnumber;
 	}
 	
+	public Address( String zipnumber, String city, String contactnumber) {
+		
+		this.zipnumber = zipnumber;
+		this.city = city;
+		this.contactnumber = contactnumber;
+	}
 	/**
 	 * @return the addressId
 	 */

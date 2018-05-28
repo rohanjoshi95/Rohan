@@ -29,4 +29,8 @@ public interface CustomerService {
 	 * */
 	List<Customer> viewAllCustomer();
 	
+	/**
+	 * To validate customer
+	 * */
+	public boolean validateCustomer(int id);
 }

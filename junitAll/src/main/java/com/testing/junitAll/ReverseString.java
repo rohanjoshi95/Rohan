@@ -2,22 +2,20 @@ package com.testing.junitAll;
 
 public class ReverseString {
 
-	public String reverseString(String str) {
-	 
+	/*
+	 *method reverseString to reverse the given string 
+	 **/
+	public String reverseString(String str) { 
     String[] split = str.split(" ");
-	  String result = " ";
-	  
+	  String result =""; 
 	  for (int i = 0; i < split.length; i++) 
 	  {
-	   
 		  String temp="";
 		  for (int j = split[i].length()-1; j >=0; j--) 
 		  {
-			
 			  temp = temp + split[i].charAt(j);
-	    	
 		  }
-		  result = result + temp +" ";
+		  result = result + temp+" ";
 	  }
 	 
 	return result; 

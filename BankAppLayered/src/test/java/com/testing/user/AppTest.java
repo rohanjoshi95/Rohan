@@ -1,4 +1,4 @@
-package com.testing.BankAppLayered;
+package com.testing.user;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

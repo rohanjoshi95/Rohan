@@ -27,16 +27,13 @@ public class CustomerDaoImpl implements CustomerDao{
 
 	@Override
 	public int addCustomer(Customer cust) {
-		String addquery="insert into customer values('"+cust.getCustomerId()+"','"+cust.getFirstname()+"','"+cust.getLastname()+"','"+cust.getCustAddId()+"')";
+		String addquery="insert into customer (firstname , lastname , addressId) values('"+cust.getFirstname()+"','"+cust.getLastname()+"','"+cust.getCustAddId()+"')";
 		System.out.println(addquery);
 		return jdbcTemplate.update(addquery);
 
 	}
 
 	@Override
-	
-	
-	
 	public int updateCustomer(int custId, String fname) {
 		String upquery ="update customer set firstname = "+"'" + fname +"'" + "where customerId ="+custId;
 		System.out.println(upquery);

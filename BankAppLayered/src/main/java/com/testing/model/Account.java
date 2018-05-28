@@ -17,6 +17,12 @@ public class Account {
 		this.customerId = customerId;
 	}
 	
+	public Account( String acntnumber, int customerId) {
+		
+		this.acntnumber = acntnumber;
+		this.customerId = customerId;
+	}
+	
 	public Account() {
 		// TODO Auto-generated constructor stub
 	}

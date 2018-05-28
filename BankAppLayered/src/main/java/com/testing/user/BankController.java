@@ -1,6 +1,8 @@
 package com.testing.user;
 
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -14,21 +16,23 @@ import com.testing.service.BankServiceImpl;
 import com.testing.service.CustomerServiceImpl;
 
 public class BankController {
-
+	
+    
 	public static void main(String[] args) {
 		
+		Logger logger = Logger.getLogger("BankController");
 		Scanner scan = new Scanner(System.in);
-		final ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		AddressServiceImpl addrserimpl = (AddressServiceImpl) context.getBean("addser");
-		CustomerServiceImpl custserimpl = (CustomerServiceImpl) context.getBean("custser");
-		BankServiceImpl bkserimpl = (BankServiceImpl) context.getBean("bankser");
-		AccountServiceImpl acntserimpl = (AccountServiceImpl) context.getBean("acntser");
+		final AddressServiceImpl addrserimpl = (AddressServiceImpl) context.getBean("addser");
+		final CustomerServiceImpl custserimpl = (CustomerServiceImpl) context.getBean("custser");
+		final BankServiceImpl bkserimpl = (BankServiceImpl) context.getBean("bankser");
+		final AccountServiceImpl acntserimpl = (AccountServiceImpl) context.getBean("acntser");
 		
-		Address add = (Address) context.getBean("addr");
-		Customer cust = (Customer) context.getBean("cust");
-		Bank bank = (Bank) context.getBean("bank");
-		Account acnt =(Account) context.getBean("acnt");
+		final Address add = (Address) context.getBean("addr");
+		final Customer cust = (Customer) context.getBean("cust");
+		final Bank bank = (Bank) context.getBean("bank");
+		final Account acnt =(Account) context.getBean("acnt");
 		
 		int choice;
 		do {
@@ -57,7 +61,6 @@ public class BankController {
 					innerchoice = scan.nextInt();
 					switch (innerchoice) {
 					case 1:
-						bank.setBankId(1);
 						bank.setBankname("HDFC Bank");
 						bank.setBkaddressId(1);
 						bkserimpl.addBank(bank);
@@ -66,7 +69,16 @@ public class BankController {
 						bkserimpl.updateBank(1, "Axis bank");
 					break;
 					case 3:
-						bkserimpl.removeBank(1);
+						System.out.println("Enter BankId to remove");
+						int id = scan.nextInt();
+						boolean test = bkserimpl.validateBank(id);
+						if (test) {
+							bkserimpl.removeBank(id);
+						}
+						else
+						{
+							logger.log(Level.INFO,"Invalid Bank");	
+						}
 					break;
 					case 4:
 						bkserimpl.viewAllBank();
@@ -94,7 +106,6 @@ public class BankController {
 					innerchoice1 = scan.nextInt();
 					switch (innerchoice1) {
 					case 1:
-						cust.setCustomerId(1);
 						cust.setFirstname("Rohan");
 						cust.setLastname("Joshi");
 						cust.setCustAddId(1);
@@ -104,10 +115,20 @@ public class BankController {
 						custserimpl.updateCustomer(1, "Nikam");
 					break;
 					case 3:
-						custserimpl.removeCustomer(1);
+						System.out.println("Enter customerId to remove");
+						int id = scan.nextInt();
+						boolean test = custserimpl.validateCustomer(id);
+						if (test == true) 
+						{
+							custserimpl.removeCustomer(id);
+						}
+						else
+						{
+							logger.log(Level.INFO,"Invalid Customer");	
+						}
 					break;
-					case 4:
-						custserimpl.viewAllCustomer();
+					case 4:				
+							custserimpl.viewAllCustomer();
 					break;
 					case 5:
 						System.out.println("Exit");
@@ -132,7 +153,6 @@ public class BankController {
 					innerchoice2 = scan.nextInt();
 					switch (innerchoice2) {
 					case 1:
-						add.setAddressId(1);
 						add.setZipnumber("415110");
 						add.setCity("Karad");
 						add.setContactnumber("9096770545");
@@ -142,7 +162,17 @@ public class BankController {
 						addrserimpl.updateAddress(1, "9096770516");
 					break;
 					case 3:
-						addrserimpl.removeAddress(1);
+						System.out.println("Enter addressId to remove");
+						int id = scan.nextInt();
+						boolean test = addrserimpl.validateAddress(id);
+						if (test == true) 
+						{
+							addrserimpl.removeAddress(id);
+						}
+						else
+						{
+							logger.log(Level.INFO,"Invalid Address");	
+						}
 					break;
 					case 4:
 						addrserimpl.viewAllAddress();
@@ -171,7 +201,6 @@ public class BankController {
 					innerchoice3 = scan.nextInt();
 					switch (innerchoice3) {
 					case 1:
-						acnt.setAccountId(1);
 						acnt.setAcntnumber("154628");
 						acnt.setCustomerId(1);
 						acntserimpl.addAccount(acnt);
@@ -180,7 +209,17 @@ public class BankController {
 						acntserimpl.updateAccount(1, "265948");
 					break;
 					case 3:
-						acntserimpl.removeAccount(1);
+						System.out.println("Enter accountId to remove");
+						int id = scan.nextInt();
+						final boolean test = acntserimpl.validateAccount(id);
+						if (test) 
+						{
+							acntserimpl.removeAccount(id);
+						}
+						else
+						{
+							logger.log(Level.INFO,"Invalid Account");	
+						}
 					break;
 					case 4:
 						acntserimpl.viewAllAccount();
@@ -196,7 +235,6 @@ public class BankController {
 				break;
 			case 5:
 				System.out.println("Exit");
-				System.exit(0);
 				break;
 			default:
 				System.out.println("Invalid choice");

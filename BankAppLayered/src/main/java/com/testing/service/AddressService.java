@@ -24,5 +24,8 @@ public interface AddressService {
 	 * viewAllAddress method for viewing all addresses from database
 	 * */
 	 List<Address> viewAllAddress();
-	
+	 /**
+	 * To validate address
+	 * */
+	 boolean validateAddress(int id);
 }

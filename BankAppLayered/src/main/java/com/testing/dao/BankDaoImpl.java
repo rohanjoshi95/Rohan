@@ -26,7 +26,7 @@ public class BankDaoImpl implements BankDao{
 
 	@Override
 	public int addBank(Bank bank) {
-		String addquery="insert into bank values('"+bank.getBankId()+"','"+bank.getBankname()+"','"+bank.getBkaddressId()+"')";
+		String addquery="insert into bank (bankname , addressId )  values('"+bank.getBankname()+"','"+bank.getBkaddressId()+"')";
 		System.out.println(addquery);
 		return jdbcTemplate.update(addquery);
 	}

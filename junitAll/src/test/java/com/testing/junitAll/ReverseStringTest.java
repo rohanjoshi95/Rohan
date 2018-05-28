@@ -7,11 +7,11 @@ import org.junit.Test;
 public class ReverseStringTest {
 
 	
-	ReverseString rs=new ReverseString();
+	ReverseString rs = new ReverseString();
 	
 	@Test
 	public void isReverseStringTest()
 	{
-		assertEquals("ihsoJ nahoR", rs.reverseString("Rohan Joshi"));
+		assertEquals("nahoR ihsoJ",rs.reverseString("Rohan Joshi"));
 	}
 }

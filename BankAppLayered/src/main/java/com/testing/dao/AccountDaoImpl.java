@@ -28,7 +28,9 @@ public class AccountDaoImpl implements AccountDao{
 	 */
 	@Override
 	public int addAccount(Account acnt) {
-		String addquery="insert into account values('"+acnt.getAccountId()+"','"+acnt.getAcntnumber()+"','"+acnt.getCustomerId()+"')";
+	
+		String addquery="insert into account(accountnumber , customerId) values('"+acnt.getAcntnumber()+"','"+acnt.getCustomerId()+"')";
+		
 		System.out.println(addquery);
 		return jdbcTemplate.update(addquery);
 	
@@ -48,8 +50,8 @@ public class AccountDaoImpl implements AccountDao{
 	/**
 	 * removeAccount method for removing Account from table 
 	 */
-	@Override
 	public int removeAccount(int id) {
+		
 		String remquery = "delete from account where accountId = " + id;
 		System.out.println(remquery);
 		return jdbcTemplate.update(remquery);

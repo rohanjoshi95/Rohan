@@ -20,6 +20,13 @@ public class Customer {
 		this.custaddId = custId;
 	}
 	
+	public Customer( String firstname, String lastname, int custaddId) {
+		
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.custaddId = custaddId;
+	}
+	
 	public Customer() {
 		// TODO Auto-generated constructor stub
 	}

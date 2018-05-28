@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class DuplicateTest {
 
-	Duplicate dup=new Duplicate();
+	Duplicate dup = new Duplicate();
 	
 	@Test
 	public void isDuplicateTest()
