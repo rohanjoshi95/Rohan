@@ -6,12 +6,13 @@ public class Account {
 	private String acntnumber;
 	private Customer acntcustomer;
 	private int customerId;
+	
 	/**
 	 * @param accountId
 	 * @param acntnumber
 	 * @param customerId
 	 */
-	public Account(int accountId, String acntnumber, int customerId) {
+	public Account(int accountId, String acntnumber, int customerId ) {
 		this.accountId = accountId;
 		this.acntnumber = acntnumber;
 		this.customerId = customerId;
@@ -24,7 +25,7 @@ public class Account {
 	}
 	
 	public Account() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	/**
 	 * @return the accountId
