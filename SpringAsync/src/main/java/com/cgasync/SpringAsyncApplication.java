@@ -29,9 +29,9 @@ public class SpringAsyncApplication implements CommandLineRunner {
 		Future<String> process3 = services.process();
 		
 		// Wait until all processes are Done
-		// If all are not Done. Pause 2s for next re-check
+		// If all are not Done. Pause 5s for next re-check
 		while (!(process1.isDone() && process2.isDone() && process3.isDone())) {
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 		}
 		
 		log.info("All Processes are DONE!");
