@@ -14,7 +14,7 @@ public class AsyncCustomizeExcutor extends AsyncConfigurerSupport{
 		ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
 	    executor.setCorePoolSize(10);
 	    executor.setMaxPoolSize(10);
-	    executor.setQueueCapacity(20);
+	    executor.setQueueCapacity(10);
 	    executor.setThreadNamePrefix("AsyncConfigurerSupport");
 	    executor.initialize();
 	    return executor;		
