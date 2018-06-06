@@ -17,10 +17,22 @@ public class AsyncServices {
 		
 		log.info("Start Processing with Thread id: " + Thread.currentThread().getId());
 		
-		// Sleep 3s for 
+		// Sleep for 3s  
 		Thread.sleep(3000);
 		
 		String processInfo = String.format("Processing is Done with Thread id= %d", Thread.currentThread().getId());
         return new AsyncResult<String>(processInfo);
     }
+	
+	public Future<String> notAsyncMethod() throws InterruptedException
+	{
+		log.info("Start Processing with Thread id: " + Thread.currentThread().getId());
+		
+		// Sleep for 3s  
+		Thread.sleep(3000);
+		
+		String process = String.format("I am not Async Method and processing is done with Thread Id = %d",Thread.currentThread().getId());
+		return new AsyncResult<String>(process);
+	}
+	
 }

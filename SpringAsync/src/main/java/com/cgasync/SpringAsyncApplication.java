@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.cgasync.service.AsyncServices;
 
 @SpringBootApplication
@@ -24,20 +23,26 @@ public class SpringAsyncApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		Future<String> process1 = services.process();
-		Future<String> process2 = services.process();
-		Future<String> process3 = services.process();
+		Future<String> processone = services.process();
+		Future<String> processtwo = services.process();
+		Future<String> processthree = services.process();
+		Future<String> processfour = services.notAsyncMethod();
+
 		
 		// Wait until all processes are Done
 		// If all are not Done. Pause 5s for next re-check
-		while (!(process1.isDone() && process2.isDone() && process3.isDone())) {
+		while (!(processone.isDone() && processtwo.isDone() && processthree.isDone() && processfour.isDone())) {
 			Thread.sleep(5000);
+		
 		}
 		
 		log.info("All Processes are DONE!");
+		
 		// Log results
-		log.info("Process 1: " + process1.get());
-		log.info("Process 2: " + process2.get());
-		log.info("Process 3: " + process3.get());
+		log.info("Process 1: " + processone.get());
+		log.info("Process 2: " + processtwo.get());
+		log.info("Process 3: " + processthree.get());
+		log.info("Process 4: " + processfour.get());
+		
 	}
 }

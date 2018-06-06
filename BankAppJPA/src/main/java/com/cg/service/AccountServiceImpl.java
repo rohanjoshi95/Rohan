@@ -79,7 +79,7 @@ public class AccountServiceImpl implements AccountService{
 		Account acnt = null;
 		Account acntData =  null;
 		Bank bk = null;
-		if((id == null) && (id == 0) && (amt.equals(0)) )
+		if((id == null) || (id == 0) || (amt.equals(0)) )
 		{
 			throw new BankException("Invalid Id OR Amount");
 		}
