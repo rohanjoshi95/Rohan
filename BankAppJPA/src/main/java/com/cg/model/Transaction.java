@@ -18,10 +18,7 @@ public class Transaction {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(nullable = false )
 	private Integer transactionId;
-	
-	@ManyToOne(targetEntity =Customer.class)
-	private Customer customer;
-	
+		
 	@ManyToOne(targetEntity = Account.class)
 	private Account account;
 	
@@ -38,10 +35,8 @@ public class Transaction {
 	 * @param amount
 	 * @param transactionType
 	 */
-	public Transaction(Integer transactionId, Customer customer, Account account, BigDecimal amount,
-		String transactionType) {
-		this.transactionId = transactionId;
-		this.customer = customer;
+	public Transaction(Account account, BigDecimal amount,String transactionType) {
+
 		this.account = account;
 		this.amount = amount;
 		this.transactionType = transactionType;
@@ -63,20 +58,6 @@ public class Transaction {
 	 */
 	public void setTransactionId(Integer transactionId) {
 		this.transactionId = transactionId;
-	}
-
-	/**
-	 * @return the customer
-	 */
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	/**
-	 * @param customer the customer to set
-	 */
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	/**
@@ -124,9 +105,12 @@ public class Transaction {
 	
 	@Override
 	public String toString() {
-		return "Transaction [transactionId=" + transactionId + ", customer=" + customer + ", account=" + account
-				+ ", amount=" + amount + ", transactionType=" + transactionType + "]";
+		return "Transaction [transactionId=" + transactionId + ", account=" + account + ", amount=" + amount
+				+ ", transactionType=" + transactionType + "]";
 	}
+
+	
+
 	
 
 }

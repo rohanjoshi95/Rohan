@@ -4,15 +4,20 @@ import java.math.BigDecimal;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.cg.exception.BankException;
 import com.cg.model.Account;
 import com.cg.model.Bank;
 import com.cg.model.Customer;
+import com.cg.model.Transaction;
 import com.cg.repository.AccountDAO;
 import com.cg.repository.BankDAO;
 import com.cg.repository.CustomerDAO;
+import com.cg.repository.TransactionDAO;
 import com.dto.WrapperBankCustomerAccount;
 
+@Transactional
 @Service
 public class AccountServiceImpl implements AccountService{
 
@@ -27,6 +32,12 @@ public class AccountServiceImpl implements AccountService{
 	
 	@Autowired
 	private BankServiceImpl bankser;
+	
+	@Autowired
+	private TransactionServiceImpl transser;
+	
+	@Autowired
+	private TransactionDAO transdao;
 
 	@Override
 	public Account createAccount(WrapperBankCustomerAccount wrappbkcusacc) throws BankException {
@@ -67,7 +78,9 @@ public class AccountServiceImpl implements AccountService{
 			BigDecimal bkamt = bk.getAmount().add(amt);
 			bk.setAmount(bkamt);
 			acnt.setBank(bk);
-			acntData =acntdao.save(acnt);
+			acntData = acntdao.save(acnt);
+			Transaction trans = new Transaction(acntData, amtount, "Deposite");
+			transser.createTransaction(trans);
 			bankser.updateBankAmount(bk);	
 		}
 		return acntData;
@@ -95,6 +108,8 @@ public class AccountServiceImpl implements AccountService{
 			bk.setAmount(bkamt);
 			acnt.setBank(bk);
 			acntData =acntdao.save(acnt);
+			Transaction trans = new Transaction(acntData, amtount, "Withdraw");
+			transser.createTransaction(trans);
 			bankser.updateBankAmount(bk);	
 		}
 		return acntData;

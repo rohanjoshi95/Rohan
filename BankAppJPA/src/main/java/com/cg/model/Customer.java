@@ -27,6 +27,7 @@ public class Customer
 	@ManyToOne(targetEntity = Bank.class)
 	private Bank bank;
 	
+	
 	public Customer() {
 		
 	}
