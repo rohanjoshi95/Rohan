@@ -1,12 +1,8 @@
 package com.cg.service;
 
 import java.util.Optional;
-
-import javax.persistence.Query;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.exception.BankException;
 import com.cg.model.Bank;
 import com.cg.repository.BankDAO;
@@ -24,7 +20,7 @@ public class BankServiceImpl implements BankService {
 	}
 
 	public Bank getBankDetails(Integer id) throws BankException {
-		Optional<Bank> list = bkdao.findById(id);
+		Optional<Bank> list = bkdao.findByBankId(id);
 		if(list.isPresent())
 		{
 			Bank bk = list.get();

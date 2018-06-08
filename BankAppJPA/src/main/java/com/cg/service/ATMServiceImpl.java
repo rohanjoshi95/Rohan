@@ -31,7 +31,7 @@ public class ATMServiceImpl implements ATMService{
 		atm = wrappatm.getAtm();
 		System.out.println(atm);
 		Integer bankid = wrappatm.getBankId();
-		Optional<Bank> banklist = bkdao.findById(bankid);
+		Optional<Bank> banklist = bkdao.findByBankId(bankid);
 		Bank bank = banklist.get();
 		atm.setBank(bank);
 		atmData = atmdao.save(atm);
@@ -49,7 +49,7 @@ public class ATMServiceImpl implements ATMService{
 		ATM atmt = null;
 		Bank bk = null;
 		if(id!=null ) {
-			Optional<ATM> atmlist =atmdao.findById(id);
+			Optional<ATM> atmlist =atmdao.findByAtmId(id);
 			atm = atmlist.get();
 			bk = atmlist.get().getBank();
 			if(bk.getAmount().compareTo(atm.getAtmamount()) > 0) {

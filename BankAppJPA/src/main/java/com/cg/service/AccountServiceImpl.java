@@ -1,6 +1,7 @@
 package com.cg.service;
 
 import java.math.BigDecimal;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,6 @@ import com.cg.model.Transaction;
 import com.cg.repository.AccountDAO;
 import com.cg.repository.BankDAO;
 import com.cg.repository.CustomerDAO;
-import com.cg.repository.TransactionDAO;
 import com.dto.WrapperBankCustomerAccount;
 
 @Transactional
@@ -36,8 +36,7 @@ public class AccountServiceImpl implements AccountService{
 	@Autowired
 	private TransactionServiceImpl transser;
 	
-	@Autowired
-	private TransactionDAO transdao;
+
 
 	@Override
 	public Account createAccount(WrapperBankCustomerAccount wrappbkcusacc) throws BankException {
@@ -47,10 +46,11 @@ public class AccountServiceImpl implements AccountService{
 		acntd = wrappbkcusacc.getAccount();
 		Integer bankId = wrappbkcusacc.getBankId();
 		Integer customerId = wrappbkcusacc.getCustomerId();
-		Optional<Bank> banklist = bkdao.findById(bankId);
+		Optional<Bank> banklist = bkdao.findByBankId(bankId);
+		System.out.println(banklist);
 		Bank bank = banklist.get();
 		acntd.setBank(bank);
-		Optional<Customer> costomerlist = custdao.findById(customerId);
+		Optional<Customer> costomerlist = custdao.findByCustomerId(customerId);
 		Customer customer = costomerlist.get();
 		acntd.setCustomer(customer);
 		acntData = acntdao.save(acntd);
@@ -63,13 +63,13 @@ public class AccountServiceImpl implements AccountService{
 		Account acnt = null;
 		Account acntData =  null;
 		Bank bk = null;
-		if((id == null) || (id == 0) || (amt.equals(0)) )
+		if((id == null) || (id == 0) )
 		{
 			throw new BankException("Invalid Id OR Amount");
 		}
 		else
 		{
-			Optional<Account> accountlist = acntdao.findById(id);
+			Optional<Account> accountlist = acntdao.findByAccountId(id);
 			System.out.println(accountlist);
 			BigDecimal amtount = accountlist.get().getAmount().add(amt);
 			acnt = accountlist.get();
@@ -92,13 +92,13 @@ public class AccountServiceImpl implements AccountService{
 		Account acnt = null;
 		Account acntData =  null;
 		Bank bk = null;
-		if((id == null) || (id == 0) || (amt.equals(0)) )
+		if((id == null) || (id == 0) )
 		{
 			throw new BankException("Invalid Id OR Amount");
 		}
 		else
 		{
-			Optional<Account> accountlist = acntdao.findById(id);
+			Optional<Account> accountlist = acntdao.findByAccountId(id);
 			System.out.println(accountlist);
 			BigDecimal amtount = accountlist.get().getAmount().subtract(amt);
 			acnt = accountlist.get();

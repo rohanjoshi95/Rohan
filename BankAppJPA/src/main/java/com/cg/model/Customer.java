@@ -42,6 +42,13 @@ public class Customer
 		this.customerPin = customerPin;
 		this.bank = bank;
 	}
+	
+	public Customer(Integer customerId ,String customerName, Integer customerPin, Bank bank) {
+		this.customerId = customerId;
+		this.customerName = customerName;
+		this.customerPin = customerPin;
+		this.bank = bank;
+	}
 
 	/**
 	 * @return the customerId

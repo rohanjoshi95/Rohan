@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import org.apache.log4j.Logger;
 
 @Entity
 @Table(name = "denomination_spr")
@@ -22,8 +21,6 @@ public class Denomination {
 	private Integer noOfDenomination;
 	@Column
 	private Integer denomination;
-	
-	public static final Logger logger = Logger.getLogger(Denomination.class);
 	
 	public Denomination() {
 		// TODO Auto-generated constructor stub

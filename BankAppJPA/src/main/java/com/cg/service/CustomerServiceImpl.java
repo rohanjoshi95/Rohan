@@ -21,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService{
 	
 	public Customer getCustomerDetails(Integer id) throws BankException {
 		
-		Optional<Customer> list = custdao.findById(id);
+		Optional<Customer> list = custdao.findByCustomerId(id);
 		if(list.isPresent())
 		{
 			Customer cust = list.get();
@@ -41,7 +41,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer custData = null;
 		customer = wrappcustomer.getCustomer();
 		Integer bankid = wrappcustomer.getBankId();
-		Optional<Bank> banklist = bkdao.findById(bankid);
+		Optional<Bank> banklist = bkdao.findByBankId(bankid);
 		Bank bank = banklist.get();
 		customer.setBank(bank);
 		custData = custdao.save(customer);

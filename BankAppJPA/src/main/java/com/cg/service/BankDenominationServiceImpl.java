@@ -16,8 +16,11 @@ import java.util.Random;
 
 @Service
 public class BankDenominationServiceImpl implements BankDenominationService{
+	public BankDenominationServiceImpl() {
+		// TODO Auto-generated constructor stub
+	}
 
-	public static final Logger logger = Logger.getLogger(BankDenominationService.class);
+	public static final Logger LOGGER = Logger.getLogger(BankDenominationService.class);
 	
 	@Autowired
 	BankDenominationDAO bkdenomdao;
@@ -27,19 +30,15 @@ public class BankDenominationServiceImpl implements BankDenominationService{
 	
 	@Override
 	public void addDenomination(Integer amount) throws BankException {
-	
-		
 		List<Integer> list = new ArrayList<Integer>();
 		list.add(2000);
 		list.add(1000);
 		list.add(500);
 		list.add(200);
-		
-		Random rand = new Random();
+		final Random rand = new Random();
 		Integer remainder = amount;
 		Integer randomIndex = rand.nextInt(list.size());
 		Integer randomElement  = list.get(randomIndex);
-		
 		for (int i = 0; i < list.size(); i++) {
 			if((randomElement.compareTo(remainder) == 0) || randomElement.compareTo(remainder) == -1)
 			{
@@ -47,7 +46,7 @@ public class BankDenominationServiceImpl implements BankDenominationService{
 				bkdenom.setNoOfDenomination(remainder / randomElement);
 				bkdenom.setDenomination(randomElement);
 				remainder = remainder % randomElement;
-				logger.info("Denomination"+ bkdenom);
+				LOGGER.info("Denomination"+ bkdenom);
 				if (remainder == 0) {
 					break;
 				}

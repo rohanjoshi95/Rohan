@@ -17,8 +17,11 @@ import com.dto.WrapperBankATM;
 
 @RestController
 public class ATMController {
+	public ATMController() {
+		// TODO Auto-generated constructor stub
+	}
 
-	Logger LOGGER = Logger.getLogger(ATMController.class);
+	public static final Logger LOGGER = Logger.getLogger(ATMController.class);
 	
 	@Autowired
 	private ATMServiceImpl atmser;
@@ -52,7 +55,7 @@ public class ATMController {
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage());
 		}
-		if(atm.equals(null))
+		if(atm == null)
 		{
 			throw new BankException("Money not Added");
 		}

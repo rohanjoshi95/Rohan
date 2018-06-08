@@ -33,7 +33,14 @@ public class Account {
 	 * @param customer
 	 * @param bank
 	 */
-	public Account(Integer accountId, BigDecimal amount, Customer customer, Bank bank) {
+	public Account(BigDecimal amount, Customer customer, Bank bank) {
+	
+		this.amount = amount;
+		this.customer = customer;
+		this.bank = bank;
+	}
+	
+	public Account(Integer accountId ,BigDecimal amount, Customer customer, Bank bank) {
 		this.accountId = accountId;
 		this.amount = amount;
 		this.customer = customer;

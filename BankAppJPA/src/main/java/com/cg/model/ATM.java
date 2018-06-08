@@ -17,7 +17,7 @@ public class ATM {
 	@Id
 	@Column(nullable =false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer ATMId;
+	private Integer atmId;
 	
 	@Column
 	private BigDecimal atmamount;
@@ -34,8 +34,8 @@ public class ATM {
 	 * @param atmamount
 	 * @param bank
 	 */
-	public ATM(Integer ATMId, BigDecimal atmamount, Bank bank) {
-		this.ATMId = ATMId;
+	public ATM(Integer atmId, BigDecimal atmamount, Bank bank) {
+		this.atmId = atmId;
 		this.atmamount = atmamount;
 		this.bank = bank;
 	}
@@ -44,14 +44,14 @@ public class ATM {
 	 * @return the ATMId
 	 */
 	public Integer getATMId() {
-		return ATMId;
+		return atmId;
 	}
 
 	/**
 	 * @param ATMId the ATMId to set
 	 */
-	public void setATMId(Integer ATMId) {
-		this.ATMId = ATMId;
+	public void setATMId(Integer atmId) {
+		this.atmId = atmId;
 	}
 
 	/**
@@ -84,7 +84,7 @@ public class ATM {
 
 	@Override
 	public String toString() {
-		return "ATM [ATMId=" + ATMId + ", atmamount=" + atmamount + ", bank=" + bank + "]";
+		return "ATM [ATMId=" + atmId + ", atmamount=" + atmamount + ", bank=" + bank + "]";
 	}
 
 	

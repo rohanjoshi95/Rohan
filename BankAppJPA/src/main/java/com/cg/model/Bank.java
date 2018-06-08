@@ -26,11 +26,15 @@ public class Bank {
 	 * @param bankId
 	 * @param amount
 	 */
-	public Bank(Integer bankId, BigDecimal amount) {
-		this.bankId = bankId;
+	public Bank(BigDecimal amount) {
+		
 		this.amount = amount;
 	}
 
+	public Bank(Integer bankId , BigDecimal amount) {
+		this.bankId = bankId;
+		this.amount = amount;
+	}
 	public Bank() {
 		// TODO Auto-generated constructor stub
 	}
