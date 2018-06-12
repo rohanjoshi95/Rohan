@@ -1,0 +1,7 @@
+-------------------------------------------------------------------------------
+Test set: com.cg.serviceTest.AccountTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.201 s <<< FAILURE! - in com.cg.serviceTest.AccountTest
+initializationError(com.cg.serviceTest.AccountTest)  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.Exception: No runnable methods
+

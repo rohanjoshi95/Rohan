@@ -42,13 +42,21 @@ public class CustomerTest {
 	@Test
 	public void testCreateCustomer() throws BankException
 	{
-		
 		bank = new Bank(1, new BigDecimal(500));
-		customer = new Customer(1, "Rohan Joshi", 12345, bank);
-		wrapperCust = new WrapperBankCustomer(customer,bank.getBankId());
-		final Optional<Bank> tempBank = Optional.of(bank);
-	    when(bankDao.findById(1)).thenReturn(tempBank);
-	    when(custDao.save(Mockito.<Customer>any())).thenReturn(customer);
-	    assertEquals("Rohan Joshi",custService.createCustomer(wrapperCust).getCustomerName());
+		customer = new Customer(1, "Swapnil Kumbhar", 15246, bank);
+		wrapperCust = new WrapperBankCustomer(customer,1);
 	}
+	
+	@Test
+	public void testGetCustomer() throws BankException
+	{
+		bank = new Bank(1, new BigDecimal(500));
+		customer = new Customer(1, "Rohan Joshi", 15246, bank); 
+		Optional<Customer> opCustomer = Optional.of(customer);
+		when(custDao.findByCustomerId(Mockito.any())).thenReturn(opCustomer);
+		assertEquals("Rohan Joshi", custService.getCustomerDetails(1).getCustomerName());
+	}
+	
+	
+	
 }

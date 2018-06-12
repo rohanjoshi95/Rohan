@@ -79,7 +79,7 @@ public class AccountServiceImpl implements AccountService{
 			bk.setAmount(bkamt);
 			acnt.setBank(bk);
 			acntData = acntdao.save(acnt);
-			Transaction trans = new Transaction(acntData, amtount, "Deposite");
+			Transaction trans = new Transaction(acntData, amtount, "Deposit");
 			transser.createTransaction(trans);
 			bankser.updateBankAmount(bk);	
 		}
