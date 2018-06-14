@@ -35,7 +35,7 @@ public class ATMServiceImpl implements ATMService{
 		Bank bank = banklist.get();
 		atm.setBank(bank);
 		atmData = atmdao.save(atm);
-		BigDecimal amount =bank.getAmount().subtract(atm.getAtmamount());
+		BigDecimal amount =bank.getAmount().subtract(atm.getAtmamount()); 
 		bank.setAmount(amount);
 		bankser.updateBankAmount(bank);
 		return atmData;

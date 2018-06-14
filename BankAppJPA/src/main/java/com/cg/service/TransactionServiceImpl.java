@@ -22,7 +22,7 @@ public class TransactionServiceImpl implements TransactionService{
 		
 		if(accountId == 0)
 		{
-			throw new BankException("accountId or can't be 0");
+			throw new BankException("accountId or can't be 0"); 
 		}
 		else
 		{

@@ -2,6 +2,7 @@ package com.cg.serviceTest;
 
 import static org.junit.Assert.assertEquals;
 
+
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
@@ -35,9 +36,9 @@ public class BankTest {
 	BankServiceImpl bankService;
 	
 	@Test
-	public void testCreateank() throws BankException
+	public void testCreatBeank() throws BankException
 	{
-		bank=new Bank(1,new BigDecimal(10));
+		bank = new Bank(1,new BigDecimal(10));
 		when(bankDao.save(Mockito.any(Bank.class))).thenReturn(bank);
 		assertEquals(new BigDecimal(10), bankService.createBank(bank).getAmount());
 	}
