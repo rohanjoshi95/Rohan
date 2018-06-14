@@ -39,7 +39,7 @@ public class BankTest {
 	{
 		bank=new Bank(1,new BigDecimal(10));
 		when(bankDao.save(Mockito.any(Bank.class))).thenReturn(bank);
-		assertEquals(bank, bankService.createBank(bank));
+		assertEquals(new BigDecimal(10), bankService.createBank(bank).getAmount());
 	}
 	
 	@Test

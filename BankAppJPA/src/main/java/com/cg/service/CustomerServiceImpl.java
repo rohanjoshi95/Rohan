@@ -44,7 +44,7 @@ public class CustomerServiceImpl implements CustomerService{
 		Optional<Bank> banklist = bkdao.findByBankId(bankid);
 		Bank bank = banklist.get();
 		customer.setBank(bank);
-		custData = custdao.save(customer);
+		custData = custdao.save(customer); 
 		return custData;
 		
 	}

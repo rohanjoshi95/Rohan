@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.cg.serviceTest.BankTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.605 s - in com.cg.serviceTest.BankTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.574 sec - in com.cg.serviceTest.BankTest

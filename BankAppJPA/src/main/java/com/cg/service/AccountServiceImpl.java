@@ -46,10 +46,8 @@ public class AccountServiceImpl implements AccountService{
 		acntd = wrappbkcusacc.getAccount();
 		Integer bankId = wrappbkcusacc.getBankId();
 		Integer customerId = wrappbkcusacc.getCustomerId();
-		Optional<Bank> banklist = bkdao.findByBankId(bankId);
-		System.out.println(banklist);
-		Bank bank = banklist.get();
-		acntd.setBank(bank);
+		Bank banklist = bkdao.findByBankId(bankId).get();
+		acntd.setBank(banklist);
 		Optional<Customer> costomerlist = custdao.findByCustomerId(customerId);
 		Customer customer = costomerlist.get();
 		acntd.setCustomer(customer);
@@ -69,7 +67,7 @@ public class AccountServiceImpl implements AccountService{
 		}
 		else
 		{
-			Optional<Account> accountlist = acntdao.findByAccountId(id);
+			Optional<Account> accountlist = acntdao.findByAccountId(id); 
 			System.out.println(accountlist);
 			BigDecimal amtount = accountlist.get().getAmount().add(amt);
 			acnt = accountlist.get();
@@ -118,7 +116,7 @@ public class AccountServiceImpl implements AccountService{
 	@Override
 	public Account getAccountDetails(Integer id) throws BankException {
 			
-		Optional<Account> list = acntdao.findById(id);
+		Optional<Account> list = acntdao.findByAccountId(id);
 		if(list.isPresent())
 		{
 			Account acnt = list.get();

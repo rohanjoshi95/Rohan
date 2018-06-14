@@ -11,8 +11,11 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.client.ExpectedCount;
 
 import com.cg.exception.BankException;
 import com.cg.model.Bank;
@@ -39,12 +42,21 @@ public class CustomerTest {
 	@Mock
 	BankDAO bankDao;
 	
+	@Autowired
+	Environment environment;
+	
 	@Test
 	public void testCreateCustomer() throws BankException
 	{
 		bank = new Bank(1, new BigDecimal(500));
 		customer = new Customer(1, "Swapnil Kumbhar", 15246, bank);
 		wrapperCust = new WrapperBankCustomer(customer,1);
+		
+		final Optional<Bank> tempBank = Optional.of(bank);
+		Mockito.when(bankDao.findByBankId(1)).thenReturn(tempBank);
+		
+		Mockito.when(custService.createCustomer(wrapperCust)).thenReturn(customer);
+		assertEquals("Swapnil Kumbhar",custService.createCustomer(wrapperCust).getCustomerName());
 	}
 	
 	@Test
@@ -57,6 +69,16 @@ public class CustomerTest {
 		assertEquals("Rohan Joshi", custService.getCustomerDetails(1).getCustomerName());
 	}
 	
-	
+/*	@Test(expected = BankException.class)
+	public void testCreateCustomerIfNull() throws BankException
+	{
+		bank = new Bank(1, new BigDecimal(500));
+		customer = new Customer(1, null, 125460, bank);
+		wrapperCust = new WrapperBankCustomer(customer, 1);
+		
+		Mockito.when(custService.createCustomer(wrapperCust)).thenReturn(customer);
+		when(custService.createCustomer(wrapperCust)).thenThrow(new BankException("Customer Name cant be null"));
+	}
+	*/
 	
 }

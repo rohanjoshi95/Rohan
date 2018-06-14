@@ -1,4 +1,3 @@
 com\cg\serviceTest\BankTest.class
-com\cg\bank\BankAppJPA\BankSpringBootAppTest.class
 com\cg\serviceTest\AccountTest.class
 com\cg\serviceTest\CustomerTest.class
